@@ -15,8 +15,16 @@ st.caption("Powered by LangChain · all-mpnet-base-v2 · FAISS · CrossEncoder �
 @st.cache_resource
 def load():
     if not index_exists():
-        st.error("Index not found. Run `python build_index.py` first.")
-        st.stop()
+        from rag.preprocessor import load_and_clean, chunk_texts
+        from rag.embedder import build_and_save
+        import random
+        with st.spinner("⚙️ Building index for the first time — takes a few minutes..."):
+            texts, dates = load_and_clean("data/IndianFinancialNews.csv")
+            pairs = list(zip(texts, dates))
+            sampled = random.sample(pairs, min(2000, len(pairs)))
+            texts_s, dates_s = zip(*sampled)
+            chunks, metadatas = chunk_texts(texts_s, dates_s)
+            return build_and_save(chunks, metadatas)
     return load_db()
 
 db = load()
