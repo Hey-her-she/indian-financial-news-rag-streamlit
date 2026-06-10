@@ -60,7 +60,7 @@ with tab1:
         with st.spinner("🔍 Retrieving with LangChain + FAISS..."):
             docs, scores = retrieve_and_rerank(query, db, top_k=top_k, fetch_k=fetch_k)
 
-        with st.spinner("🤖 Generating with Mistral..."):
+        with st.spinner("🤖 Generating " + mode + "..."):
             answer = generate(query, docs, mode)
 
         # Store as pending — waiting for rating
