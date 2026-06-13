@@ -3,7 +3,7 @@ from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 
 INDEX_PATH = "index/faiss_store"
-MODEL_NAME = "all-mpnet-base-v2"   # same model from your mpnet notebook
+MODEL_NAME = "all-mpnet-base-v2"   
 
 def get_embedding_model():
     return HuggingFaceEmbeddings(

@@ -7,7 +7,7 @@ if index_exists():
     print("Index already exists. Delete index/faiss_store to rebuild.")
 else:
     print("Loading and cleaning data...")
-    texts, dates = load_and_clean("data/IndianFinancialNews.csv", sample_size=5000)
+    texts, dates = load_and_clean("data/IndianFinancialNews.csv", sample_size=50000)
     print(f"Sampled {len(texts)} documents.")
 
     print("Chunking...")
